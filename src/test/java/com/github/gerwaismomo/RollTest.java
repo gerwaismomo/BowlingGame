@@ -13,7 +13,12 @@ public class RollTest {
     @Test
     public void roll_x_isValid() {
         Roll roll = new Roll('x');
+        assertTrue(roll.isValid());
+    }
 
+    @Test
+    public void roll_hyphen_isValid() {
+        Roll roll = new Roll('-');
         assertTrue(roll.isValid());
     }
 
