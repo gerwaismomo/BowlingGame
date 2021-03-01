@@ -14,6 +14,12 @@ public class Frame {
     }
 
     public void addRoll(Roll roll) {
+        if(rolls.size() == 0 && roll.getKey() == '/')
+            throw new IllegalArgumentException(""+roll.getKey());
+        if(rolls.size() == 1 ) {
+            if (roll.getKey() == 'x')
+                throw new IllegalArgumentException("" + roll.getKey());
+        }
         rolls.add(roll);
         this.valid = this.validate();
     }
@@ -23,8 +29,7 @@ public class Frame {
         if(rolls.size() == 1) {
             good = rolls.get(0).getKey() == 'x';
         } else if(rolls.size() == 2){
-            if(rolls.get(0).getKey() == '/')
-                good = false;
+
         }
         return good;
     }
