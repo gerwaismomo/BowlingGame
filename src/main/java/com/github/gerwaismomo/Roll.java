@@ -2,21 +2,20 @@ package com.github.gerwaismomo;
 
 public class Roll {
 
-    private String roll;
+    private char roll;
     private boolean valid;
 
-    public Roll(String roll) {
+    public Roll(char roll) {
         this.roll = roll;
 
         this.valid = validate(roll);
     }
 
-    private boolean validate(String roll) {
+    private boolean validate(char roll) {
         boolean good = false;
-        if( roll.length() == 1) {
-            if (roll.matches("x"))
-                good = true;
-        }
+        String rollString = ""+ roll;
+        if (rollString.matches("x|[1-9]]"))
+            good = true;
         return good;
     }
 
