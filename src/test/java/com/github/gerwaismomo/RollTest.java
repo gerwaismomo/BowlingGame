@@ -12,8 +12,18 @@ public class RollTest {
 
     @Test
     public void roll_x_isValid() {
-        Roll roll = new Roll("x");
+        Roll roll = new Roll('x');
 
+        assertTrue(roll.isValid());
+    }
+
+    @Test
+    public void roll_digit_isValid() {
+        Roll roll = new Roll('1');
+        assertTrue(roll.isValid());
+        roll = new Roll('2');
+        assertTrue(roll.isValid());
+        roll = new Roll('9');
         assertTrue(roll.isValid());
     }
 }
