@@ -20,8 +20,11 @@ public class Frame {
 
     private boolean validate() {
         boolean good = false;
-        if(rolls.size() ==1) {
+        if(rolls.size() == 1) {
             good = rolls.get(0).getKey() == 'x';
+        } else if(rolls.size() == 2){
+            if(rolls.get(0).getKey() == '/')
+                good = false;
         }
         return good;
     }

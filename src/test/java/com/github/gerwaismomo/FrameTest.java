@@ -26,5 +26,32 @@ public class FrameTest {
         Frame frame = new Frame();
         frame.addRoll(roll);
         assertFalse(frame.isValid());
+
+        roll = new Roll('1');
+        frame = new Frame();
+        frame.addRoll(roll);
+        assertFalse(frame.isValid());
+
+        roll = new Roll('-');
+        frame = new Frame();
+        frame.addRoll(roll);
+        assertFalse(frame.isValid());
+    }
+
+    @Test
+    public void frame_withFirstCharSpare_isNotValid() {
+        Roll roll1 = new Roll('/');
+        Roll roll2 = new Roll('/');
+        Frame frame = new Frame();
+        frame.addRoll(roll1);
+        frame.addRoll(roll2);
+        assertFalse(frame.isValid());
+
+        roll1 = new Roll('/');
+        roll2 = new Roll('3');
+        frame = new Frame();
+        frame.addRoll(roll1);
+        frame.addRoll(roll2);
+        assertFalse(frame.isValid());
     }
 }
