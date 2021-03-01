@@ -7,6 +7,17 @@ public class Roll {
 
     public Roll(String roll) {
         this.roll = roll;
+
+        this.valid = validate(roll);
+    }
+
+    private boolean validate(String roll) {
+        boolean good = false;
+        if( roll.length() == 1) {
+            if (roll.matches("x"))
+                good = true;
+        }
+        return good;
     }
 
     public boolean isValid() {
