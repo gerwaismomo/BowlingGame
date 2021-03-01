@@ -6,8 +6,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(SpringExtension.class)
 public class FrameTest {
@@ -39,19 +38,18 @@ public class FrameTest {
     }
 
     @Test
-    public void frame_withFirstCharSpare_isNotValid() {
-        Roll roll1 = new Roll('/');
-        Roll roll2 = new Roll('/');
-        Frame frame = new Frame();
-        frame.addRoll(roll1);
-        frame.addRoll(roll2);
-        assertFalse(frame.isValid());
+    public void frame_withFirstCharSpare_throwsError() {
+        final Roll roll1 = new Roll('/');
+        final Frame frame = new Frame();
+        assertThrows(IllegalArgumentException.class, () -> frame.addRoll(roll1));
+    }
 
-        roll1 = new Roll('/');
-        roll2 = new Roll('3');
-        frame = new Frame();
+    @Test
+    public void frame_withSecondCharStrike_throwsError() {
+        Roll roll1 = new Roll('1');
+        final Roll roll2 = new Roll('x');
+        final Frame frame = new Frame();
         frame.addRoll(roll1);
-        frame.addRoll(roll2);
-        assertFalse(frame.isValid());
+        assertThrows(IllegalArgumentException.class, () -> frame.addRoll(roll2));
     }
 }
