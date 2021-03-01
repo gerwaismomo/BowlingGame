@@ -11,13 +11,19 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class RollTest {
 
     @Test
-    public void roll_x_isValid() {
+    public void roll_strike_isValid() {
         Roll roll = new Roll('x');
         assertTrue(roll.isValid());
     }
 
     @Test
-    public void roll_hyphen_isValid() {
+    public void roll_spare_isValid() {
+        Roll roll = new Roll('/');
+        assertTrue(roll.isValid());
+    }
+
+    @Test
+    public void roll_gutter_isValid() {
         Roll roll = new Roll('-');
         assertTrue(roll.isValid());
     }
