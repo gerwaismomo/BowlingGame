@@ -52,4 +52,14 @@ public class FrameTest {
         frame.addRoll(roll1);
         assertThrows(IllegalArgumentException.class, () -> frame.addRoll(roll2));
     }
+
+    @Test
+    public void frame_withTwoGutters_isValid() {
+        Roll roll1 = new Roll('-');
+        Roll roll2 = new Roll('-');
+        Frame frame = new Frame();
+        frame.addRoll(roll1);
+        frame.addRoll(roll2);
+        assertTrue(frame.isValid());
+    }
 }
