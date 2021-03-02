@@ -10,9 +10,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class BowlingTest {
 
     @Test
-    public void game_withSimpleRolls_isValid() {
+    public void game_withSimpleRolls_isWellScored() {
         Game game = new Game("54 54 54 54 54 54 54 54 54 54");
         assertEquals(90, game.getGameScore());
+    }
+
+    @Test
+    public void game_withNeitherStrikeNorSpare_isWellScored() {
+        Game game = new Game("54 54 -4 54 -- 54 54 5- 54 54");
+        assertEquals(72, game.getGameScore());
     }
 
 }
