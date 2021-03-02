@@ -39,5 +39,11 @@ public class BowlingTest {
         assertEquals(100, game.getGameScore());
     }
 
+    @Test
+    public void game_withStrikesIn10turns_isWellScored() {
+        Game game = new Game("x x x x x x x x 54 54");
+        assertEquals(242, game.getGameScore());
+    }
+
 
 }
