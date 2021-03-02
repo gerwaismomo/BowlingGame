@@ -22,15 +22,21 @@ public class BowlingTest {
     }
 
     @Test
-    public void game_withStrikeAnd10turns_isWellScored() {
+    public void game_withStrikeIn10turns_isWellScored() {
         Game game = new Game("x 54 54 54 54 54 54 54 54 54");
         assertEquals(100, game.getGameScore());
     }
 
     @Test
-    public void game_withSpareAnd10turns_isWellScored() {
+    public void game_withSpareIn0turns_isWellScored() {
         Game game = new Game("5/ 54 54 54 54 54 54 54 54 54");
         assertEquals(96, game.getGameScore());
+    }
+
+    @Test
+    public void game_withSpareAndStrikesAndGuttersIn10turns_isWellScored() {
+        Game game = new Game("5/ 54 54 x 54 54 54 -3 54 54");
+        assertEquals(100, game.getGameScore());
     }
 
 
