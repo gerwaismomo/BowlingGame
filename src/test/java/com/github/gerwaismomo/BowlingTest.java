@@ -45,5 +45,11 @@ public class BowlingTest {
         assertEquals(242, game.getGameScore());
     }
 
+    @Test
+    public void game_withSparesIn10turns_isWellScored() {
+        Game game = new Game("5/ 5/ 5/ 5/ 5/ 5/ 5/ 5/ 5/ 54");
+        assertEquals(144, game.getGameScore());
+    }
+
 
 }
