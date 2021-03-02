@@ -1,5 +1,8 @@
 package com.github.gerwaismomo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Roll {
 
     private char key;
@@ -20,11 +23,22 @@ public class Roll {
 
     public int score() {
         switch (key) {
-        case 'x':
-        case '/': return 10;
-        case '-': return 0;
-        default: return 1 + ((int)key - (int)'1');
+            case 'x':
+            case '/': return 10;
+            case '-': return 0;
+            default: return 1 + ((int)key - (int)'1');
         }
+    }
+
+    public List<Integer> getBonusFactors() {
+        List<Integer> bonusFactors = new ArrayList<>();
+        switch (key) {
+            case 'x': bonusFactors.add(1);
+            case '/': bonusFactors.add(1);
+                        break;
+            default:
+        }
+        return bonusFactors;
     }
 
     public boolean isValid() {
@@ -42,4 +56,5 @@ public class Roll {
     public void setKey(char key) {
         this.key = key;
     }
+
 }

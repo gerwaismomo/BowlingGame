@@ -1,9 +1,15 @@
 package com.github.gerwaismomo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Game {
     int gameScore;
+    List<Integer> bonusForehead;
+
     public Game(String turns) {
         this.gameScore = 0;
+        this.bonusForehead = new ArrayList<>();
 
         processTurns(turns);
     }
@@ -20,9 +26,31 @@ public class Game {
 
             frame.addRollOrExit(roll);
 
-            if(frame.isComplete()) {
-                gameScore += frame.getCurrentScore();
+            gameScore += (1 + bonusFactor()) * frame.getLatestRollScore();
+            updateBonusFactor(frame.getLatestRollBonusFactors());
+
+            if(frame.isComplete())
                 frame = new Frame();
+
+        }
+    }
+
+    private int bonusFactor() {
+        int factor = 0;
+        if(!bonusForehead.isEmpty()) {
+            factor = bonusForehead.remove(0);
+        }
+        return factor;
+    }
+
+    private void updateBonusFactor(List<Integer> newBonuses) {
+        if(bonusForehead.isEmpty()) {
+            bonusForehead = newBonuses;
+        } else {
+            if(!newBonuses.isEmpty()) {
+                bonusForehead.set(0, (bonusForehead.get(0) + newBonuses.get(0)));
+                if (newBonuses.size() == 2)
+                    bonusForehead.add(newBonuses.get(1));
             }
         }
     }

@@ -62,4 +62,24 @@ public class Frame {
     public int getCurrentScore() {
         return currentScore;
     }
+
+    public int getLatestRollScore() {
+        int latestRollScore = 0;
+        if(!rolls.isEmpty()) {
+            Roll latestRoll = rolls.get(rolls.size()-1);
+            switch (latestRoll.getKey()) {
+                case '/' : latestRollScore = 10 - rolls.get(0).score();
+                default  : latestRollScore = latestRoll.score();
+            }
+        }
+        return latestRollScore;
+    }
+
+    public List<Integer> getLatestRollBonusFactors() {
+        List<Integer> bonuses = new ArrayList<>();
+        if(!rolls.isEmpty()) {
+            bonuses = rolls.get(rolls.size()-1).getBonusFactors();
+        }
+        return bonuses;
+    }
 }
