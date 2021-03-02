@@ -39,5 +39,9 @@ I estimate :
 - the time complexity to O(n). 
 - the space complexity to O(5).
 
+#### Test-Driven Development
+The TDD journey I traversed can be examinated in [commits](https://github.com/gerwaismomo/BowlingGame/commits/main).
+I tried to commit each TDD step (Red, Green, Refactor). But I had to cheat around 5-10 times. 
+
 ### Code quality
 We have tried to provide a clean code for this first TDD and Kata experience.
