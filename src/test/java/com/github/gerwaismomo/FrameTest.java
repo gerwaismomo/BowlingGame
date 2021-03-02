@@ -1,9 +1,7 @@
 package com.github.gerwaismomo;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -16,7 +14,7 @@ public class FrameTest {
         Roll roll = new Roll('x');
         Frame frame = new Frame();
         frame.addRoll(roll);
-        assertTrue(frame.isValid());
+        assertTrue(frame.isComplete());
     }
 
     @Test
@@ -24,17 +22,17 @@ public class FrameTest {
         Roll roll = new Roll('1');
         Frame frame = new Frame();
         frame.addRoll(roll);
-        assertFalse(frame.isValid());
+        assertFalse(frame.isComplete());
 
         roll = new Roll('1');
         frame = new Frame();
         frame.addRoll(roll);
-        assertFalse(frame.isValid());
+        assertFalse(frame.isComplete());
 
         roll = new Roll('-');
         frame = new Frame();
         frame.addRoll(roll);
-        assertFalse(frame.isValid());
+        assertFalse(frame.isComplete());
     }
 
     @Test
@@ -60,6 +58,25 @@ public class FrameTest {
         Frame frame = new Frame();
         frame.addRoll(roll1);
         frame.addRoll(roll2);
-        assertTrue(frame.isValid());
+        assertTrue(frame.isComplete());
+    }
+
+    @Test
+    public void frame_withoutStrikeOrSpare_lessThan10() {
+        Roll roll1 = new Roll('1');
+        Roll roll2 = new Roll('8');
+        Frame frame = new Frame();
+        frame.addRoll(roll1);
+        frame.addRoll(roll2);
+        assertTrue(10 > frame.score());
+    }
+
+    @Test
+    public void frame_withTwoRollsGreaterThan9_throwsError() {
+        Roll roll1 = new Roll('4');
+        final Roll roll2 = new Roll('8');
+        final Frame frame = new Frame();
+        frame.addRoll(roll1);
+        assertThrows(IllegalArgumentException.class, () -> frame.addRoll(roll2));
     }
 }
