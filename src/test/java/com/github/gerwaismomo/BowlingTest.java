@@ -27,5 +27,11 @@ public class BowlingTest {
         assertEquals(100, game.getGameScore());
     }
 
+    @Test
+    public void game_withSpareAnd10turns_isWellScored() {
+        Game game = new Game("5/ 54 54 54 54 54 54 54 54 54");
+        assertEquals(95, game.getGameScore());
+    }
+
 
 }
