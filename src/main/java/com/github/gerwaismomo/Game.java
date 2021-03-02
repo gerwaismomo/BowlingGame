@@ -31,7 +31,10 @@ public class Game {
                 gameScore += (1 + bonusFactor()) * frame.getLatestRollScore();
                 updateBonusFactor(frame.getLatestRollBonusFactors());
             } else {
-                gameScore += bonusFactor() * frame.getLatestRollScore();
+                if(remainsBonusToThreat())
+                    gameScore += bonusFactor() * frame.getLatestRollScore();
+                else
+                    break;
             }
             if(frame.isComplete()) {
                 frame = new Frame();
@@ -42,10 +45,13 @@ public class Game {
 
     private int bonusFactor() {
         int factor = 0;
-        if(!bonusForehead.isEmpty()) {
+        if(remainsBonusToThreat()) {
             factor = bonusForehead.remove(0);
         }
         return factor;
+    }
+    private boolean remainsBonusToThreat() {
+        return !bonusForehead.isEmpty();
     }
 
     private void updateBonusFactor(List<Integer> newBonuses) {
