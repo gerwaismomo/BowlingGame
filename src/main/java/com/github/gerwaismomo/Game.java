@@ -19,6 +19,7 @@ public class Game {
         System.out.println(" turns "+ turns);
 
         Frame frame = new Frame();
+        int frameCount = 0;
         for(char c: turns.toCharArray()) {
             Roll roll = new Roll(c);
             if(!roll.isValid())
@@ -26,12 +27,16 @@ public class Game {
 
             frame.addRollOrExit(roll);
 
-            gameScore += (1 + bonusFactor()) * frame.getLatestRollScore();
-            updateBonusFactor(frame.getLatestRollBonusFactors());
-
-            if(frame.isComplete())
+            if(frameCount < 10) {
+                gameScore += (1 + bonusFactor()) * frame.getLatestRollScore();
+                updateBonusFactor(frame.getLatestRollBonusFactors());
+            } else {
+                gameScore += bonusFactor() * frame.getLatestRollScore();
+            }
+            if(frame.isComplete()) {
                 frame = new Frame();
-
+                frameCount++;
+            }
         }
     }
 
