@@ -2,12 +2,11 @@ package com.github.gerwaismomo;
 
 public class Roll {
 
-    private char roll;
+    private char key;
     private boolean valid;
 
     public Roll(char roll) {
-        this.roll = roll;
-
+        this.key = roll;
         this.valid = validate(roll);
     }
 
@@ -19,11 +18,28 @@ public class Roll {
         return good;
     }
 
+    public int score() {
+        switch (key) {
+        case 'x':
+        case '/': return 10;
+        case '-': return 0;
+        default: return 1 + ((int)key - (int)'1');
+        }
+    }
+
     public boolean isValid() {
         return valid;
     }
 
     public void setValid(boolean valid) {
         this.valid = valid;
+    }
+
+    public char getKey() {
+        return key;
+    }
+
+    public void setKey(char key) {
+        this.key = key;
     }
 }

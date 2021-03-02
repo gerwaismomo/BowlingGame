@@ -68,13 +68,13 @@ public class FrameTest {
         Frame frame = new Frame();
         frame.addRoll(roll1);
         frame.addRoll(roll2);
-        assertTrue(10 > frame.score());
+        assertTrue(10 > frame.getCurrentScore());
     }
 
     @Test
     public void frame_withTwoRollsGreaterThan9_throwsError() {
         Roll roll1 = new Roll('4');
-        final Roll roll2 = new Roll('8');
+        final Roll roll2 = new Roll('6');
         final Frame frame = new Frame();
         frame.addRoll(roll1);
         assertThrows(IllegalArgumentException.class, () -> frame.addRoll(roll2));
