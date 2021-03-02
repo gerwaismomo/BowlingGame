@@ -13,7 +13,7 @@ public class Roll {
     private boolean validate(char roll) {
         boolean good = false;
         String rollString = ""+ roll;
-        if (rollString.matches("x|\\d|-|/"))
+        if (rollString.matches("x|[1-9]|-|/"))
             good = true;
         return good;
     }

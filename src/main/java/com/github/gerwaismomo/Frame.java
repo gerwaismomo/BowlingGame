@@ -5,9 +5,9 @@ import java.util.List;
 
 public class Frame {
 
-    List<Roll> rolls;
-    boolean complete;
-    int currentScore;
+    private List<Roll> rolls;
+    private boolean complete;
+    private int currentScore;
 
     public Frame() {
         this.rolls = new ArrayList<>();
@@ -15,7 +15,7 @@ public class Frame {
         this.currentScore = 0;
     }
 
-    public void addRoll(Roll roll) {
+    public void addRollOrExit(Roll roll) {
         if(validateRoll(roll)) {
             this.currentScore = evalScore(roll);
             rolls.add(roll);
