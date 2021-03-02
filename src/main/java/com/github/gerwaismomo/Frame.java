@@ -29,7 +29,7 @@ public class Frame {
         if(rolls.size() == 1) {
             good = rolls.get(0).getKey() == 'x';
         } else if(rolls.size() == 2){
-
+            good = true;
         }
         return good;
     }
