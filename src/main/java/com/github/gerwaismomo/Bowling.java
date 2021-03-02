@@ -3,11 +3,11 @@ package com.github.gerwaismomo;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Game {
+public class Bowling {
     int gameScore;
     List<Integer> bonusForehead;
 
-    public Game(String turns) {
+    public Bowling(String turns) {
         this.gameScore = 0;
         this.bonusForehead = new ArrayList<>();
 

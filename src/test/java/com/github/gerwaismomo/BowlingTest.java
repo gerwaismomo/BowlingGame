@@ -11,55 +11,61 @@ public class BowlingTest {
 
     @Test
     public void game_withSimpleRolls_isWellScored() {
-        Game game = new Game("54 54 54 54 54 54 54 54 54 54");
+        Bowling game = new Bowling("54 54 54 54 54 54 54 54 54 54");
         assertEquals(90, game.getGameScore());
     }
 
     @Test
     public void game_withNeitherStrikeNorSpare_isWellScored() {
-        Game game = new Game("54 54 -4 54 -- 54 54 5- 54 54");
+        Bowling game = new Bowling("54 54 -4 54 -- 54 54 5- 54 54");
         assertEquals(72, game.getGameScore());
     }
 
     @Test
     public void game_withStrikeIn10turns_isWellScored() {
-        Game game = new Game("x 54 54 54 54 54 54 54 54 54");
+        Bowling game = new Bowling("x 54 54 54 54 54 54 54 54 54");
         assertEquals(100, game.getGameScore());
     }
 
     @Test
     public void game_withSpareIn0turns_isWellScored() {
-        Game game = new Game("5/ 54 54 54 54 54 54 54 54 54");
+        Bowling game = new Bowling("5/ 54 54 54 54 54 54 54 54 54");
         assertEquals(96, game.getGameScore());
     }
 
     @Test
     public void game_withSpareAndStrikesAndGuttersIn10turns_isWellScored() {
-        Game game = new Game("5/ 54 54 x 54 54 54 -3 54 54");
+        Bowling game = new Bowling("5/ 54 54 x 54 54 54 -3 54 54");
         assertEquals(100, game.getGameScore());
     }
 
     @Test
     public void game_withStrikesIn10turns_isWellScored() {
-        Game game = new Game("x x x x x x x x 54 54");
+        Bowling game = new Bowling("x x x x x x x x 54 54");
         assertEquals(242, game.getGameScore());
     }
 
     @Test
     public void game_withSparesIn10turns_isWellScored() {
-        Game game = new Game("5/ 5/ 5/ 5/ 5/ 5/ 5/ 5/ 5/ 54");
+        Bowling game = new Bowling("5/ 5/ 5/ 5/ 5/ 5/ 5/ 5/ 5/ 54");
         assertEquals(144, game.getGameScore());
     }
 
     @Test
-    public void game_withStrikesIn12turns_isWellScored() {
-        Game game = new Game("x x x x x x x x x x x x");
+    public void game_with2StrikesBonuses_isWellScored() {
+        Bowling game = new Bowling("x x x x x x x x x x x x");
         assertEquals(300, game.getGameScore());
     }
 
     @Test
-    public void game_In12turns_isWellScored() {
-        Game game = new Game("x x x x x x x x x x 44");
+    public void game_with2Bonus_isWellScored() {
+        Bowling game = new Bowling("x x x x x x x x x x 44");
         assertEquals(282, game.getGameScore());
+    }
+
+    @Test
+    public void game_with1Bonus_isWellScored() {
+        Bowling game = new Bowling("x x x x x x x x x 5/ 5");
+        assertEquals(270, game.getGameScore());
     }
 }
