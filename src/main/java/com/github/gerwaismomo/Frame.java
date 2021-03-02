@@ -69,9 +69,12 @@ public class Frame {
             Roll latestRoll = rolls.get(rolls.size()-1);
             switch (latestRoll.getKey()) {
                 case '/' : latestRollScore = 10 - rolls.get(0).score();
+                            break;
                 default  : latestRollScore = latestRoll.score();
             }
+            System.out.print("key: "+ latestRoll.getKey());
         }
+        System.out.println(" latestRollScore:= "+ latestRollScore);
         return latestRollScore;
     }
 
