@@ -24,17 +24,33 @@ public class Frame {
     }
 
     private boolean validateRoll(Roll roll) {
-        if(rolls.size() == 0 && roll.getKey() == '/')
+        if( noRollInFrame() && isSpare(roll) )
             throw new IllegalArgumentException(""+roll.getKey());
-        if(rolls.size() == 1 ) {
-            if (roll.getKey() == 'x')
+        if( oneRollInFrame() ) {
+            if (isStrike(roll))
                 throw new IllegalArgumentException("" + roll.getKey());
-            else if(roll.getKey() != '/') {
-                if (!((this.currentScore + roll.score()) < 10))
+            else if( ! isSpare(roll) ) {
+                if ( ! ((this.currentScore + roll.score()) < 10) )
                     throw new IllegalArgumentException(""+ currentScore +" " + roll.getKey());
             }
         }
         return true;
+    }
+
+    private boolean noRollInFrame() {
+        return rolls.size() == 0;
+    }
+    private boolean oneRollInFrame() {
+        return rolls.size() == 1;
+    }
+    private boolean twoRollsInFrame() {
+        return rolls.size() == 2;
+    }
+    private boolean isSpare(Roll roll) {
+        return roll.getKey() == '/';
+    }
+    private boolean isStrike(Roll roll) {
+        return roll.getKey() == 'x';
     }
 
     private int evalScore(Roll roll) {
@@ -47,9 +63,9 @@ public class Frame {
 
     private boolean frameComplete() {
         boolean good = false;
-        if(rolls.size() == 1) {
-            good = rolls.get(0).getKey() == 'x';
-        } else if(rolls.size() == 2){
+        if( oneRollInFrame() ) {
+            good = isStrike(rolls.get(0));
+        } else if( twoRollsInFrame() ){
             good = true;
         }
         return good;
